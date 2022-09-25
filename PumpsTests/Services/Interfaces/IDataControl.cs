@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PumpsTests.Models
+namespace PumpsTests.Services.Interfaces
 {
-    internal class Model
+    public interface IDataControl
     {
+        void AddRow();
     }
 }

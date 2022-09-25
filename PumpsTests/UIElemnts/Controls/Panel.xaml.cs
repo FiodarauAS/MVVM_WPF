@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PumpsTests.UIElemnts.Controls
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for Panel.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class Panel : UserControl
     {
-        public UserControl1()
+        public Panel()
         {
             InitializeComponent();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PumpsTests.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,8 @@ namespace PumpsTests
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = new ApplicationViewModel();
         }
     }
 }
