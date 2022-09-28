@@ -23,6 +23,7 @@ namespace PumpsTests
             InitializeComponent();
 
             DataContext = new ApplicationViewModel();
+
         }
     }
 }

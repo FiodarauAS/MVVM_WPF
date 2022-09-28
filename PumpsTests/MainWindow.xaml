@@ -7,8 +7,13 @@
         xmlns:uc="clr-namespace:PumpsTests.UIElemnts.Controls"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="450" 
-        Width="800">
+        Height="670" 
+        MaxHeight="670" 
+        MinHeight="670" 
+        Width="1100" 
+        MaxWidth="1100" 
+        MinWidth="1100" 
+        Background="#FFF5F5F5">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -21,16 +26,9 @@
 
         <uc:Panel Margin="10,0,10,10" />
         <uc:Panel Margin="10,10,10,10" Grid.Row="1" />
-        <uc:Panel Margin="32,17,32,22" Grid.Column="1" />
         <uc:Panel Margin="32,10,32,10" Grid.Column="1" Grid.Row="1" />
 
-        <Grid Grid.Column="1" Grid.Row="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <DataGrid Grid.Row="1" x:Name="dgSimple" 
+        <DataGrid Grid.Row="0" x:Name="dgSimple" 
                 ItemsSource="{Binding DataModels, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
                 MinColumnWidth="50" 
                 ColumnWidth="50" 
@@ -40,7 +38,81 @@
                 VerticalScrollBarVisibility="Visible"
                 HorizontalScrollBarVisibility="Hidden"
                 BorderBrush="Transparent">
-            </DataGrid>
+        </DataGrid>
+        
+        <Grid Grid.Column="1" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="Motor" Margin="0" Grid.Row="0" Grid.Column="0" Background="White" BorderBrush="Black" BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.75*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <Label Content="Baudrate" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+                            <Label Content="Ports" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+                            <Label Content="Status:" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <ComboBox IsEditable="True" IsReadOnly="True" Text="19200" Foreground="Black" Margin="1" Width="70" Height="20"/>
+                            <ComboBox IsEditable="True" IsReadOnly="True" Text="Com15" Foreground="Black" Margin="1" Width="70" Height="20"/>
+                            <Label Content="Open" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+                            <Label Content="Online" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+                        </StackPanel>
+                    </Grid>
+                    
+                    <StackPanel Grid.Column="1">
+                        <Button Content="Open" Height="20" Width="100" Margin="1"/>
+                        <Button Content="Close" Height="20" Width="100" Margin="1"/>
+                        <Label Content="Closed" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+                        <Label Content="Offline" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Manometer" Margin="0" Grid.Row="0" Grid.Column="1" Background="White" BorderBrush="Black" BorderThickness="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.75*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <Label Content="Baudrate" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+                            <Label Content="Ports" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+                            <Label Content="Status:" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <ComboBox IsEditable="True" IsReadOnly="True" Text="19200" Foreground="Black" Margin="1" Width="70" Height="20"/>
+                            <ComboBox IsEditable="True" IsReadOnly="True" Text="Com15" Foreground="Black" Margin="1" Width="70" Height="20"/>
+                            <Label Content="Open" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+                            <Label Content="Online" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel Grid.Column="1">
+                        <Button Content="Open" Height="20" Width="100" Margin="1"/>
+                        <Button Content="Close" Height="20" Width="100" Margin="1"/>
+                        <Label Content="Closed" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+                        <Label Content="Offline" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
         </Grid>
         
         <Grid Grid.Column="1" Grid.Row="1">
@@ -60,7 +132,7 @@
                 <Label Content="Test"/>
                 <Label Content="Test"/>
             </StackPanel>
-            
+
             <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Label Content="Test"/>
                 <Label Content="Test"/>
@@ -70,7 +142,7 @@
                 <Label Content="Test"/>
                 <Label Content="Test"/>
             </StackPanel>
-            
+
             <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Label Content="Test"/>
                 <Label Content="Test"/>
@@ -80,7 +152,7 @@
                 <Label Content="Test"/>
                 <Label Content="Test"/>
             </StackPanel>
-            
+
             <StackPanel Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Label Content="Test"/>
                 <Label Content="Test"/>
