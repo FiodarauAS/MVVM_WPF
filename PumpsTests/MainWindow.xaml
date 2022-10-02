@@ -6,162 +6,363 @@
         xmlns:local="clr-namespace:PumpsTests"
         xmlns:uc="clr-namespace:PumpsTests.UIElemnts.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" 
-        Height="670" 
-        MaxHeight="670" 
-        MinHeight="670" 
-        Width="1100" 
-        MaxWidth="1100" 
-        MinWidth="1100" 
-        Background="#FFF5F5F5">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        Title="Pump station v0.1" 
+        Height="800" 
+        MaxHeight="800" 
+        MinHeight="800" 
+        Width="1200" 
+        MaxWidth="1200" 
+        MinWidth="1200" 
+        WindowStyle="None"
+        AllowsTransparency="True">
+    <Window.Resources>
+        <Style x:Name="WindowStyle" TargetType="{x:Type local:MainWindow}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <Border Background="{StaticResource ControlBlue}">
+                            <Border x:Name="Border_MinimizeClose" Style="{StaticResource WindowChromeOutsideBorderStyle}">
+                                <Grid Margin="0" Background="{StaticResource ControlBlue}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Border>
+                                        <Grid Grid.Row="0" Panel.ZIndex="1" Background="{StaticResource ControlBlue}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="Pump test station v0.1" Grid.Column="0" Margin="18, 0, 0, 0" FontSize="14" VerticalAlignment="Center" Foreground="White"/>
+                                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Background="Transparent">
+                                                <Button x:Name="Btn_AppMinimize" Style="{StaticResource WindowStyleButtons}"   Padding="0,0,0,4" Content="_" />
+                                                <Button x:Name="Btn_AppClose" Style="{StaticResource WindowStyleButtons}"  Content="X" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                    <Border Grid.Row="2">
+                                        <ContentPresenter />
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="27" ResizeBorderThickness="5" />
+    </WindowChrome.WindowChrome>
 
-        <uc:Panel Margin="10,0,10,10" />
-        <uc:Panel Margin="10,10,10,10" Grid.Row="1" />
-        <uc:Panel Margin="32,10,32,10" Grid.Column="1" Grid.Row="1" />
-
-        <DataGrid Grid.Row="0" x:Name="dgSimple" 
-                ItemsSource="{Binding DataModels, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
-                MinColumnWidth="50" 
-                ColumnWidth="50" 
-                IsReadOnly="True" 
-                CanUserResizeColumns="True"
-                GridLinesVisibility="None"
-                VerticalScrollBarVisibility="Visible"
-                HorizontalScrollBarVisibility="Hidden"
-                BorderBrush="Transparent">
-        </DataGrid>
-        
-        <Grid Grid.Column="1" Grid.Row="0">
+    <Border Background="#FFF5F5F5" BorderBrush="{StaticResource ControlBlue}" BorderThickness="0" Margin="0.5 0.5 0.5 1.5">
+        <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="76*"/>
+                <ColumnDefinition Width="514*"/>
+                <ColumnDefinition Width="445*"/>
+                <ColumnDefinition Width="164*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <GroupBox Header="Motor" Margin="0" Grid.Row="0" Grid.Column="0" Background="White" BorderBrush="Black" BorderThickness="1">
+
+            <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" BorderBrush="Transparent" BorderThickness="1" Background="#FFF5F5F5" CornerRadius="5" Margin="1,8,1,1" Grid.ColumnSpan="2">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="0.75*" />
-                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" Background="White" CornerRadius="5" Margin="0,0,10,0">
+                        <DataGrid  x:Name="dgSimple" 
+                            ItemsSource="{Binding DataModels, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                            MinColumnWidth="50" 
+                            ColumnWidth="90" 
+                            IsReadOnly="True" 
+                            CanUserResizeColumns="True"
+                            GridLinesVisibility="All"
+                            VerticalScrollBarVisibility="Hidden"
+                            HorizontalScrollBarVisibility="Hidden"
+                            BorderBrush="Transparent"
+                            Background="White" Margin="0,0,0,-1" />
+                    </Border>
+                    <Border Grid.Row="1"  BorderBrush="Black" BorderThickness="1" Background="White" CornerRadius="5" Margin="0,5,1,28" />
+                </Grid>
+
+            </Border>
+
+            <Grid Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <GroupBox Header="Motor" Grid.Row="0" Grid.Column="0" Background="White" BorderBrush="Black" BorderThickness="1" Margin="0,30,30,0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="0.75*" />
                         </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0">
-                            <Label Content="Baudrate" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
-                            <Label Content="Ports" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
-                            <Label Content="Status:" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
-                        </StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <Label Content="Baudrate" Style="{StaticResource LabelBaseStyle}" HorizontalContentAlignment="Left" Margin="1 10 1 6"/>
+                                <Label Content="Ports" Style="{StaticResource LabelBaseStyle}" HorizontalContentAlignment="Left" Margin="1 10 1 1"/>
+                                <Label Content="Status:" Style="{StaticResource LabelBaseStyle}" HorizontalContentAlignment="Left" Margin="1 8 1 1"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <ComboBox Text="19200" Style="{StaticResource ComboBoxStyle}"/>
+                                <ComboBox Text="Com15" Style="{StaticResource ComboBoxStyle}"/>
+                                <Label Content="Open" Style="{StaticResource LabelStyle}"/>
+                                <Label Content="Online" Style="{StaticResource LabelStyle}"/>
+                            </StackPanel>
+                        </Grid>
+
                         <StackPanel Grid.Column="1">
-                            <ComboBox IsEditable="True" IsReadOnly="True" Text="19200" Foreground="Black" Margin="1" Width="70" Height="20"/>
-                            <ComboBox IsEditable="True" IsReadOnly="True" Text="Com15" Foreground="Black" Margin="1" Width="70" Height="20"/>
-                            <Label Content="Open" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
-                            <Label Content="Online" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+                            <Button Content="Open" Style="{StaticResource ButtonStyle}"/>
+                            <Button Content="Close" Style="{StaticResource ButtonStyle}"/>
+                            <Label Content="Closed" Style="{StaticResource LabelStyle}"/>
+                            <Label Content="Offline" Style="{StaticResource LabelStyle}"/>
                         </StackPanel>
                     </Grid>
-                    
-                    <StackPanel Grid.Column="1">
-                        <Button Content="Open" Height="20" Width="100" Margin="1"/>
-                        <Button Content="Close" Height="20" Width="100" Margin="1"/>
-                        <Label Content="Closed" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
-                        <Label Content="Offline" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
-                    </StackPanel>
-                </Grid>
-            </GroupBox>
-            <GroupBox Header="Manometer" Margin="0" Grid.Row="0" Grid.Column="1" Background="White" BorderBrush="Black" BorderThickness="1">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="0.75*" />
-                    </Grid.ColumnDefinitions>
+                </GroupBox>
+                <GroupBox Header="Manometer" Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="1" Margin="304,30,30,0" Grid.ColumnSpan="2">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="0.75*" />
                         </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0">
-                            <Label Content="Baudrate" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
-                            <Label Content="Ports" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
-                            <Label Content="Status:" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
-                        </StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <Label Content="Baudrate" Style="{StaticResource LabelBaseStyle}" HorizontalContentAlignment="Left" Margin="1 10 1 6"/>
+                                <Label Content="Ports" Style="{StaticResource LabelBaseStyle}" HorizontalContentAlignment="Left" Margin="1 10 1 1"/>
+                                <Label Content="Status:" Style="{StaticResource LabelBaseStyle}" HorizontalContentAlignment="Left" Margin="1 8 1 1"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <ComboBox Text="19200" Style="{StaticResource ComboBoxStyle}"/>
+                                <ComboBox Text="Com15" Style="{StaticResource ComboBoxStyle}"/>
+                                <Label Content="Open" Style="{StaticResource LabelStyle}"/>
+                                <Label Content="Online" Style="{StaticResource LabelStyle}"/>
+                            </StackPanel>
+                        </Grid>
+
                         <StackPanel Grid.Column="1">
-                            <ComboBox IsEditable="True" IsReadOnly="True" Text="19200" Foreground="Black" Margin="1" Width="70" Height="20"/>
-                            <ComboBox IsEditable="True" IsReadOnly="True" Text="Com15" Foreground="Black" Margin="1" Width="70" Height="20"/>
-                            <Label Content="Open" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
-                            <Label Content="Online" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+                            <Button Content="Open" Style="{StaticResource ButtonStyle}"/>
+                            <Button Content="Close" Style="{StaticResource ButtonStyle}"/>
+                            <Label Content="Closed" Style="{StaticResource LabelStyle}"/>
+                            <Label Content="Offline" Style="{StaticResource LabelStyle}"/>
                         </StackPanel>
                     </Grid>
+                </GroupBox>
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1" Grid.ColumnSpan="2" Background="White" CornerRadius="5" Margin="1,30,30,0">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <Label Content="User"/>
+                            <Label Content="Pump-Nr."/>
+                            <Label Content="Comment"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <ComboBox IsEditable="True" IsReadOnly="True" Text="User" Foreground="Black" Margin="1" Width="100" Height="20"/>
+                            <TextBox Text="Nummer"/>
+                            <TextBox Text="Comment"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <RadioButton Content="Elmo"/>
+                            <RadioButton Content="Faulhaber"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="IFactor" />
+                                <TextBox Text="0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="KP" />
+                                <TextBox Text="0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="KI" />
+                                <TextBox Text="0"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3">
+                            <Button Content="Edit" Style="{StaticResource ButtonStyle}"/>
+                            <Button Content="Export" Style="{StaticResource ButtonStyle}"/>
+                            <Button Content="STOP" Style="{StaticResource ButtonStyle}"/>
+                            <Button Content="GET Ports" Style="{StaticResource ButtonStyle}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
 
-                    <StackPanel Grid.Column="1">
-                        <Button Content="Open" Height="20" Width="100" Margin="1"/>
-                        <Button Content="Close" Height="20" Width="100" Margin="1"/>
-                        <Label Content="Closed" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
-                        <Label Content="Offline" Foreground="Black" Margin="1" Width="70" Height="20" Padding="0"/>
+            <Border Grid.Column="2" Grid.Row="1" BorderBrush="Black" BorderThickness="1" Background="White" CornerRadius="5" Margin="1,30,30,30" Grid.ColumnSpan="2">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Button Width="100" Height="25"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Button Width="100" Height="25"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Button Width="100" Height="25"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Button Width="100" Height="25"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Test"/>
+                            <TextBox Text="Test"/>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
-            </GroupBox>
+            </Border>
         </Grid>
-        
-        <Grid Grid.Column="1" Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-            </StackPanel>
-
-            <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-            </StackPanel>
-
-            <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-            </StackPanel>
-
-            <StackPanel Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-                <Label Content="Test"/>
-            </StackPanel>
-        </Grid>
-    </Grid>
+    </Border>
 </Window>

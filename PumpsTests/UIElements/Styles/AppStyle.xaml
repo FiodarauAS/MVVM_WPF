@@ -1,0 +1,87 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <!--#region DECLARATION-->
+    <SolidColorBrush x:Key="ControlBlue">#CC119EDA</SolidColorBrush>
+    <SolidColorBrush x:Key="ControlLigthGray">#FFDEDEDE</SolidColorBrush>
+    <SolidColorBrush x:Key="ControlGray">#FFBFBFBF</SolidColorBrush>
+    <SolidColorBrush x:Key="ControlDarkGray">#FF8C8E94</SolidColorBrush>
+    <!--#endregion-->
+
+    <Style x:Key="PanelStyle" TargetType="{x:Type Rectangle}">
+        <Setter Property="Fill" Value="AliceBlue" />
+    </Style>
+
+    <Style x:Key="WindowChromeOutsideBorderStyle" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="{StaticResource ControlBlue}"/>
+        <Setter Property="CornerRadius" Value="13"/>
+        <Setter Property="BorderThickness" Value="1 1 1 0"/>
+    </Style>
+    
+    <Style TargetType="{x:Type Button}" x:Key="WindowStyleButtons" >
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Background" Value="{StaticResource ControlBlue}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Width" Value="30" />
+        <Setter Property="LayoutTransform">
+            <Setter.Value>
+                <ScaleTransform ScaleX="1.5" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{TemplateBinding Content}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#CC53B9E4" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}" >
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="IsEditable" Value="True"/>
+        <Setter Property="Margin" Value="1 10 1 5"/>
+        <Setter Property="Width" Value="70"/>
+        <Setter Property="Height" Value="20"/>
+    </Style>
+
+    <!--#region Labels-->
+    
+    <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Width" Value="70"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="1 10 1 5"/>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region Labels-->
+    <Style x:Key="LabelBaseStyle" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Width" Value="70"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+
+    <Style x:Key="LabelStyle" TargetType="{x:Type Label}" BasedOn="{StaticResource LabelBaseStyle}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Margin" Value="1 5 1 5"/>
+        <Setter Property="Width" Value="70"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
+    <!--#endregion-->
+
+</ResourceDictionary>
