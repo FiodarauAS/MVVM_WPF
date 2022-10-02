@@ -10,10 +10,10 @@ namespace PumpsTests.Services
     {
         #region Definitions
 
-        private string _logMessage;
+        private string? _logMessage;
         private StringBuilder _sbText = new StringBuilder();
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
         public string LogMessage
         {
             get => _logMessage;
@@ -25,6 +25,8 @@ namespace PumpsTests.Services
         }
 
         #endregion
+
+        #region Misc
 
         protected void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
@@ -43,5 +45,7 @@ namespace PumpsTests.Services
                 Log($"[{DateTime.Now} Ошибка] " + ex.Message);
             }
         }
+
+        #endregion
     }
 }

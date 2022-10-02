@@ -57,5 +57,27 @@ namespace PumpsTests.Models
                 _id3 = value;
             }
         }
+        public string MyProperty4
+        {
+            get
+            {
+                return _id3;
+            }
+            set
+            {
+                _id3 = value;
+            }
+        }
+        public string MyProperty5
+        {
+            get
+            {
+                return _id3;
+            }
+            set
+            {
+                _id3 = value;
+            }
+        }
     }
 }
