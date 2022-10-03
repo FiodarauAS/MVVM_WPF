@@ -1,4 +1,6 @@
-﻿using PumpsTests.ViewModels;
+﻿using PumpsTests.Services;
+using PumpsTests.Services.Interfaces;
+using PumpsTests.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +24,11 @@ namespace PumpsTests
         {
             InitializeComponent();
 
-            DataContext = new ApplicationViewModel();
+            ApplicationViewModel vm = new ApplicationViewModel();
 
+            DataContext = vm;
+
+            vm._closeWindow = new RelayCommand(obj => this.Close());
         }
     }
 }

@@ -54,7 +54,7 @@
         <Setter Property="Height" Value="20"/>
     </Style>
 
-    <!--#region Labels-->
+    <!--#region Buttons-->
     
     <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Foreground" Value="Black"/>
@@ -84,4 +84,22 @@
     </Style>
     <!--#endregion-->
 
+    <!--#region Borders-->
+
+    <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBlue}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="White" />
+    </Style>
+    
+    <!--#endregion-->
+
+    <!--#region GroupBox-->
+
+    <Style x:Key="GroupBoxStyle" TargetType="{x:Type GroupBox}">
+        <Setter Property="Background" Value="White" />
+
+    </Style>
+    
+    <!--#endregion-->
 </ResourceDictionary>
