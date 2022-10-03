@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PumpsTests"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         xmlns:uc="clr-namespace:PumpsTests.UIElemnts.Controls"
         mc:Ignorable="d"
         Title="Pump station v0.1" 
@@ -14,7 +16,9 @@
         MaxWidth="1200" 
         MinWidth="1200" 
         WindowStyle="None"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        WindowState="{Binding CurrentWindowState}"
+        Topmost="{Binding TopMostState}">
     <Window.Resources>
         <Style x:Name="WindowStyle" TargetType="{x:Type local:MainWindow}">
             <Setter Property="Template">
@@ -35,8 +39,11 @@
                                             </Grid.ColumnDefinitions>
                                             <TextBlock Text="Pump test station v0.1" Grid.Column="0" Margin="18, 0, 0, 0" FontSize="14" VerticalAlignment="Center" Foreground="White"/>
                                             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Background="Transparent">
-                                                <Button x:Name="Btn_AppMinimize" Style="{StaticResource WindowStyleButtons}"   Padding="0,0,0,4" Content="_" />
-                                                <Button x:Name="Btn_AppClose" Style="{StaticResource WindowStyleButtons}"  Content="X" />
+                                                <Button x:Name="Btn_AppMinimize" Style="{StaticResource WindowStyleButtons}" Command="{Binding MinimizeWindow}" Padding="0,0,0,4" Content="_" />
+                                                <Button x:Name="Btn_AppClose" 
+                                                        Style="{StaticResource WindowStyleButtons}" 
+                                                        Command="{Binding _closeWindow, Mode=OneWay}"
+                                                        Content="X" />
                                             </StackPanel>
                                         </Grid>
                                     </Border>
@@ -68,16 +75,17 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" BorderBrush="Transparent" BorderThickness="1" Background="#FFF5F5F5" CornerRadius="5" Margin="1,8,1,1" Grid.ColumnSpan="2">
+            <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" BorderBrush="Transparent" BorderThickness="1" Background="#FFF5F5F5" CornerRadius="5" Margin="0" Grid.ColumnSpan="2">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" Background="White" CornerRadius="5" Margin="0,0,10,0">
+                    <Border Style="{StaticResource BorderStyle}" Grid.Row="0" Margin="30,30,30,0">
                         <DataGrid  x:Name="dgSimple" 
                             ItemsSource="{Binding DataModels, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
                             MinColumnWidth="50" 
+                            Margin="0"
                             ColumnWidth="90" 
                             IsReadOnly="True" 
                             CanUserResizeColumns="True"
@@ -85,12 +93,26 @@
                             VerticalScrollBarVisibility="Hidden"
                             HorizontalScrollBarVisibility="Hidden"
                             BorderBrush="Transparent"
-                            Background="White" Margin="0,0,0,-1" />
+                            Background="White" 
+                            HeadersVisibility="Column">
+                        </DataGrid>
+                        <!--<DataGrid Name="dataGrid1" 
+                                  ItemsSource="{Binding DataModels, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                                  Margin="12,12,0,0" 
+                                  AutoGenerateColumns="True" 
+                                  Style="{DynamicResource DataGridStyle1}" HeadersVisibility="Column">
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Setter Property="Background" Value="LightBlue" />
+                                </Style>
+                            </DataGrid.RowStyle>
+                        </DataGrid>-->
                     </Border>
-                    <Border Grid.Row="1"  BorderBrush="Black" BorderThickness="1" Background="White" CornerRadius="5" Margin="0,5,1,28" />
+                    <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Margin="30,30,30,30" />
+                    <CheckBox Command="{Binding TopmostWindow}" Width="150" Margin="28,0,0,7" Grid.Row="1" VerticalAlignment="Bottom" Content="Foreground Mode" HorizontalAlignment="Left"/>
                 </Grid>
-
             </Border>
+
 
             <Grid Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
@@ -101,7 +123,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <GroupBox Header="Motor" Grid.Row="0" Grid.Column="0" Background="White" BorderBrush="Black" BorderThickness="1" Margin="0,30,30,0">
+                <GroupBox Header="Motor" Grid.Row="0" Grid.Column="0" Background="White" BorderBrush="Black" BorderThickness="1" Margin="0,21,30,0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -118,8 +140,11 @@
                                 <Label Content="Status:" Style="{StaticResource LabelBaseStyle}" HorizontalContentAlignment="Left" Margin="1 8 1 1"/>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
-                                <ComboBox Text="19200" Style="{StaticResource ComboBoxStyle}"/>
-                                <ComboBox Text="Com15" Style="{StaticResource ComboBoxStyle}"/>
+                                <ComboBox Style="{StaticResource ComboBoxStyle}">
+                                    <ComboBoxItem Content="19200"/>
+                                    <ComboBoxItem Content="9600"/>
+                                </ComboBox>
+                                <ComboBox ItemsSource="{Binding Ports}" Style="{StaticResource ComboBoxStyle}"/>
                                 <Label Content="Open" Style="{StaticResource LabelStyle}"/>
                                 <Label Content="Online" Style="{StaticResource LabelStyle}"/>
                             </StackPanel>
@@ -133,7 +158,7 @@
                         </StackPanel>
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Manometer" Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="1" Margin="304,30,30,0" Grid.ColumnSpan="2">
+                <GroupBox Style="{StaticResource GroupBoxStyle}" Header="Manometer" Grid.Row="0" Background="White" BorderBrush="Black" BorderThickness="1" Margin="304,21,30,0" Grid.ColumnSpan="2">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -150,8 +175,11 @@
                                 <Label Content="Status:" Style="{StaticResource LabelBaseStyle}" HorizontalContentAlignment="Left" Margin="1 8 1 1"/>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
-                                <ComboBox Text="19200" Style="{StaticResource ComboBoxStyle}"/>
-                                <ComboBox Text="Com15" Style="{StaticResource ComboBoxStyle}"/>
+                                <ComboBox Style="{StaticResource ComboBoxStyle}">
+                                    <ComboBoxItem Content="19200"/>
+                                    <ComboBoxItem Content="9600"/>
+                                </ComboBox>
+                                <ComboBox ItemsSource="{Binding Ports}" Style="{StaticResource ComboBoxStyle}"/>
                                 <Label Content="Open" Style="{StaticResource LabelStyle}"/>
                                 <Label Content="Online" Style="{StaticResource LabelStyle}"/>
                             </StackPanel>
@@ -165,7 +193,7 @@
                         </StackPanel>
                     </Grid>
                 </GroupBox>
-                <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1" Grid.ColumnSpan="2" Background="White" CornerRadius="5" Margin="1,30,30,0">
+                <Border Style="{StaticResource BorderStyle}" Grid.Row="1" Grid.ColumnSpan="2" Margin="1,30,30,0">
                     <Grid >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -209,7 +237,7 @@
                 </Border>
             </Grid>
 
-            <Border Grid.Column="2" Grid.Row="1" BorderBrush="Black" BorderThickness="1" Background="White" CornerRadius="5" Margin="1,30,30,30" Grid.ColumnSpan="2">
+            <Border Style="{StaticResource BorderStyle}" Grid.Column="2" Grid.Row="1" Margin="1,30,30,30" Grid.ColumnSpan="2">
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
